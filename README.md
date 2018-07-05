@@ -1,0 +1,2 @@
+# shrink
+shrink a json
