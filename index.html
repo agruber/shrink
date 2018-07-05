@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JSON converter</title>
+</head>
+
+<body>
+  <textarea id="ta" rows="20" cols="160"></textarea>
+<br>
+<button onclick="myFunction()">Shrink</button>   
+<button onclick="myFunction2()">Clear</button>
+
+<script>
+  function myFunction() {
+  try {
+  var j = JSON.parse(document.getElementById("ta").value);
+  j = j[0];
+  ['dup_sha1','keywords','pdf_restricted','incomplete','duplicates','attachments','updated','abstract','citedByLink','citekey','journal_checked','owner','imported','subfolders','created','crawl_urls','autoCleaned','labels','autocompleted','','folders','sha1','id_list','webimport_sha1s','affiliation','pii'].forEach(function(x){delete j[x]});
+  ['author','editor','series_editor','contributor','translator'].forEach(function(x) {
+  if (x in j) {
+    j[x].forEach(function(y){delete y._id;delete y.bak;delete y.formatted;delete y.level;delete y.initials;});
+  }
+
+
+  });
+  document.getElementById("ta").value = JSON.stringify(j,null,0);
+  } catch(e) {
+    console.log(e);
+  }
+  }
+  function myFunction2() {document.getElementById("ta").value = ''}
+</script>
+</body>
+</html>
