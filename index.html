@@ -22,8 +22,10 @@
   if (x in j) {
     j[x].forEach(function(y){delete y._id;delete y.bak;delete y.formatted;delete y.level;delete y.initials;});
   }
-
-
+   });
+    
+    Object.keys(j).forEach(function(x) {
+    if (j[x].length === 0) { delete j[x];}
   });
   document.getElementById("ta").value = JSON.stringify(j,null,0);
   } catch(e) {
